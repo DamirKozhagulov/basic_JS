@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо реализовать четыре функции, каждая функция должна принимать по два
+числа и выполнять одну из операций (каждая функция выполняет одну из них):
+1. Сложение
+2. Разность
+3. Умножение
+4. Деление
+
+Необходимо сделать так, чтобы функция вернула число, например выражение
+`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
+сложения в данном примере, ваши названия функций могут отличаться).
+
+Округлять значения, которые возвращают функции не нужно, однако, обратите
+внимание на разность, функция должна вычесть из большего числа меньшее, либо
+вернуть 0, если числа равны.
+
+Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
+не нужно.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  let firstNum = +prompt('enter first number');
+  let secondNum = +prompt('enter second number');
+
+  console.log(addAtoB(firstNum, secondNum));
+  console.log(substractAfromB(firstNum, secondNum));
+  console.log(multiplyAandB(firstNum, secondNum));
+  console.log(ADividedByB(firstNum, secondNum));
+
+  /** 
+    *функция складывает два числа.
+    */ 
+  function addAtoB(a, b) {   
+      const answer = a + b;
+      return answer;   
+  }
+
+  /**
+    * функция вычетает одно число из другого.
+    * при этом если а больше, чем b, то b вычитается из а.
+    * в противнм случае а вычитается из b.
+    * если числа равны выводится 0. 
+    */ 
+
+  function substractAfromB(a, b) {
+    if (a > b) {
+      let answer = a - b;
+      return answer;
+    } else if (a < b) {
+      let answer = b - a;
+      return answer;
+    } else if (a === b ) {
+      return 0;
+    }
+    
+  }
+
+  /**
+    *функция умножает два числа.
+    */ 
+
+  function multiplyAandB(a, b) {
+    const answer = a * b;
+    return answer;
+  }
+  
+  /**
+    *функция делит первое число вторым.
+    */ 
+
+  function ADividedByB(a, b)  { // задания делить большее на меньшее
+    const answer = a / b;       // не было.
+    return answer;
+  }
+  
+  // Здесь пишем решение, данный комментарий необходимо стереть.
+</script>
+</body>
+</html>

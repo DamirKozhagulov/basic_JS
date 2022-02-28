@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
+Необходимо реализовать функцию:
+mathOperation(arg1, arg2, operation);
+Параметры:
+arg1 - первое число.
+arg2 - второе число.
+operation - строка, которая содержит один символ из: "+", "-", "*", "/".
+Функция mathOperation должна вернуть результат операции, который был передан в
+параметр operation для двух первых аргументов (arg1 и arg2).
+Функция mathOperation должна использовать для вычисления функции из 4 задания.
+
+Примеры вызова функции:
+console.log(mathOperation(5, 3, "+")); // 8
+console.log(mathOperation(5, 3, ":)")); // NaN
+
+Функции mathOperation всегда передаются корректные числа, проверки на NaN,
+Infinity делать не нужно, однако, в случае если был передан некорректный
+аргумент в параметр operation, необходимо вернуть NaN.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  /**
+    *функция складывает два числа.
+    */ 
+
+  function addAtoB(a, b) {
+      const answer = a + b;
+      return answer;
+    }
+
+  /**
+    * функция вычетает одно число из другого.
+    * при этом если а больше, чем b, то b вычитается из а.
+    * в противнм случае а вычитается из b.
+    * если числа равны выводится 0. 
+    */ 
+
+  function substractAfromB(a, b) {
+    if (a > b) {
+      let answer = a - b;
+      return answer;
+    } else if (a < b) {
+      let answer = b - a;
+      return answer;
+    } else if (a === b) {
+      return 0;
+    }
+  }
+
+  /**
+    *функция умножает два числа.
+    */ 
+
+  function multiplyAandB(a, b) {
+    const answer = a * b;
+    return answer;
+  }
+
+  /**
+    *функция делит первое число вторым.
+    */ 
+
+  function ADividedByB(a, b) { // задания делить большее на меньшее
+    const answer = Math.round((a / b) * 100) / 100;
+    return answer;
+  }
+
+  /**
+    * функция принимает два числа и арифметическое действие.
+    * в случае ввода "+", выполняет действие функция addAto(),
+    которя в свою очередь отвечает за сложение двух чисел.
+    *в случае ввода "-", выполняет действие функция substractAfromB(),
+    которя отвечает за вычетание одного числа из другого.
+    * в случае ввода "*", выполняет действие функция multiplyAandB(),
+    которя отвечает за умножение двух чисел.
+    * в случае ввода "/", выполняет действие функция ADividedByB(),
+    т.е. происходит деление первого введеного числа на второе.
+    */
+
+  function mathOperation(arg1, arg2, operation) {
+    if (operation == "+") {
+      return addAtoB(arg1, arg2);
+    } else if (operation == "-") {
+      return substractAfromB(arg1, arg2);
+    } else if (operation == "*") {
+      return multiplyAandB(arg1, arg2);
+    } else if (operation == "/") {
+      return ADividedByB(arg1, arg2);
+    } else {
+      return;
+    }
+  }
+
+  const firstNum = +prompt('enter first number');
+  const secondNum = +prompt('enter second number');
+  const arithmeticOp = prompt('enter arithmetic operation')
+
+  console.log(mathOperation(firstNum, secondNum, arithmeticOp));
+
+
+  // Здесь пишем решение, данный комментарий необходимо стереть.
+</script>
+</body>
+</html>
