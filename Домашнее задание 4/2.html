@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для поста в социальной сети.
+Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
+Пост должен хранить:
+1. Автора поста (имени достаточно).
+2. Текст поста.
+3. Дату и время последнего изменения поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
+менять текст поста.
+
+---
+
+Необходимо создать функцию-конструктор/класс для закрепленного поста в
+социальной сети.
+Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
+Закрепленный пост должен наследоваться от обычного поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
+будет лежать значение false (это свойство будет обозначать, будет ли наш
+закрепленный пост подсвечен).
+У экземпляров объекта закрепленного поста должен быть метод с названием
+`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
+(будет менять свойство `highlighted`).
+
+---
+
+Подсказки:
+1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит (например вызовет какой-то
+метод, который изменит что-то в посте), дата и время последнего изменения
+поста также должна измениться.
+3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
+что-нибудь пропустить.
+4. Если непонятно условие - задайте вопрос.
+-->
+<script>
+  "use strict";
+
+
+  function PostES5(name, text, date) {
+    this.name = name;
+    this.text = text;
+    this.date = new Date();
+  }
+  PostES5.prototype.edit = function() {
+    this.text = "Huawei может решить проблему отсутствия 5G в своих смартфонах оригинальным способом – при помощи аксессуара. Как пишет источник, смартфоны Huawei, обделенные поддержкой 5G, в скором времени могут ее обрести. Причем речь и о новых моделях, и о тех, которые уже выпущены. Достигнуто это будет при помощи дополнительного аксессуара – специального чехла."; 
+    this.date = new Date();
+  }
+  
+
+  const postES5 = new PostES5('Dexter', 'Huawei может решить проблему отсутствия 5G в своих смартфонах оригинальным способом – при помощи аксессуара');
+
+  // тут пришлось поставить alert(), потому что иначе не видно изменение времени. С этим временем просидел, прогружается быстро и такое ощущение было, что время просто копируется.
+  alert(`${postES5.text} '\n' ${postES5.name}  '\n' ${postES5.date}`);
+  console.log(`${postES5.text} '\n' ${postES5.name}  '\n' ${postES5.date}`);
+
+  postES5.edit(); 
+  alert(`${postES5.text} '\n' ${postES5.name}  '\n' ${postES5.date}`);
+  console.log(`${postES5.text} '\n' ${postES5.name}  '\n' ${postES5.date}`);
+
+  function AttachedPostES5(name, text, date, highlighted) {
+    PostES5.call(this, name, text, date);
+    this.highlighted = false;
+  }
+  
+  AttachedPostES5.prototype = Object.create(PostES5.prototype);
+
+  AttachedPostES5.prototype.makeTextHighlighted = function() {
+    this.highlighted = true;
+  }
+
+  const attachedPostES5 = new AttachedPostES5('Dexter', 'Huawei может решить проблему отсутствия 5G в своих смартфонах оригинальным способом – при помощи аксессуара');
+  alert(attachedPostES5);
+  console.log(attachedPostES5);
+
+  attachedPostES5.makeTextHighlighted();
+  alert(attachedPostES5);
+  console.log(attachedPostES5);
+
+
+  ///////////////////////////////////
+
+
+  class PostES6 {
+    constructor(name, text, date) {
+      this.name = name;
+      this.text = text;
+      this.date = new Date();
+    }
+    edit() {
+      this.text = 'HЕдинственная в мире материнская плата с поддержкой памяти DDR4 и DDR5 оказалась недорогой. За Onda H610M+ просят 95 долларов. В периоды, когда индустрия переходила с оперативной памяти DDR2 на DDR3 и с DDR3 на DDR4, производители предлагали переходные системные платы – со слотами для модулей двух стандартов, старого и нового. Но сейчас ситуация кардинально разнится: переходных вариантов нет, системные платы поддерживают или DDR4, или DDR5. Все, кроме Onda H610M+.';
+      this.date = new Date();
+    }
+  }
+
+  const postES6 = new PostES6('Dexter', 'HЕдинственная в мире материнская плата с поддержкой памяти DDR4 и DDR5 оказалась недорогой. За Onda H610M+ просят 95 долларов');
+  console.log(`${postES6.text} '\n' ${postES6.name}  '\n' ${postES6.date}`);
+
+  postES6.edit(); 
+  console.log(`${postES6.text} '\n' ${postES6.name}  '\n' ${postES6.date}`);
+
+
+  class AttachedPostES6 extends PostES6 {
+    constructor(name, text, date, highlighted) {
+      super(name, text, date);
+      this.highlighted = false;
+    }
+    makeTextHighlighted() {
+      this.highlighted = true;
+    }
+  }
+
+  const attachedPostES6 = new AttachedPostES6('Dexter', 'HЕдинственная в мире материнская плата с поддержкой памяти DDR4 и DDR5 оказалась недорогой.За Onda H610M + просят 95 долларов.');
+  console.log(attachedPostES6);
+
+  attachedPostES6.makeTextHighlighted();
+  console.log(attachedPostES6);
+
+  // Сложно, даже с примером из видеоурока, но интересно. Когда раз пять прочитал задание, думал вообще не выполнимо))
+
+</script>
+</body>
+</html>

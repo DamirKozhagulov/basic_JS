@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для продукта.
+Названия: `ProductES5` для es5 стиля, `ProductES6` для es6 стиля.
+При создании объекта от функции-конструктора/класса необходимо передавать имя
+и цену товара, эта информация должна быть сохранена в объекте.
+Также у объекта должна быть возможность выполнить метод `make25Discount`, данный
+метод должен уменьшать стоимость продукта на 25%.
+Необходимо продемонстрировать работу с объектом (в свободной форме).
+-->
+<script>
+  "use strict"; 
+
+  /** 
+  * Создаем функцию-коструктор с именем модели автомобиля(car) и ее фактической ценой(price).
+  * Создаем прототип, при использовании которого изменяется стоимость автомобиля на 25% в меньшую сторону.
+  * Создаем переменную(product1) к которой присваиваем новое значение 
+  ProductES5 c значениями 'BMW X5', 4000000.
+  * При помощи console.log выводим в консоль текст, где мы используем product1.car и product.price
+  * Запрашиваем метод(make25Discount),  который меняет стоимость автомобиля.
+  * Выводим автомобиль с новой стоимостью.
+  */
+  function ProductES5(car, price) {
+    this.car = car;
+    this.price = price;
+  };
+  
+  ProductES5.prototype.make25Discount = function() {
+    this.price = this.price * 0.75;
+  };
+  
+  const product1 = new ProductES5('BMW X5', 6040000);
+  console.log(`Выбранный автомобиль: ${product1.car}, текущая стоимость: ${product1.price}.`);
+
+  product1.make25Discount();
+  console.log(`Выбранный автомобиль: ${product1.car}, с учетом скидки: ${product1.price}`);
+
+
+  ///////////////////////////////////////////////////////////////////////
+
+  class ProductES6 {
+    constructor(auto, price) {
+      this.auto = auto;
+      this.price = price;
+    };
+
+    make25Discount() {
+      this.price = this.price * 0.75;
+    }
+  };
+
+  const product2 = new ProductES6('mercedes s500', 18420000);
+  console.log(`Выбранный автомобиль: ${product2.auto}, текущая стоимость: ${product2.price}.`)
+
+  product2.make25Discount();
+  console.log(`Выбранный автомобиль: ${product2.auto}, с учетом скидки: ${product2.price}.`)
+
+  //es6 вроде как понятнее или так кажется после того, как посидел с es5.
+
+</script>
+</body>
+</html>
